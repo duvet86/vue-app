@@ -24,8 +24,8 @@ export default new Vuex.Store<IState>({
   actions: {
     async getPeople({ commit }) {
       try {
-        const data = await fetch("/api/data");
-        const people: IPerson[] = await data.json();
+        const response = await fetch("/api/data");
+        const { people }: IState = await response.json();
 
         commit("setPeople", people.slice(0, 12));
       } catch (e) {
