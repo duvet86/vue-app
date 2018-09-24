@@ -19,6 +19,7 @@ const productsModule: Module<IProductsState, IRootState> = {
   mutations: {
     setPeople(state, people: IPerson[]) {
       state.people = people;
+      state.isLoading = false;
     }
   },
   actions: {
