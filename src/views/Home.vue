@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import store, { IPerson } from "@/store";
+import store from "@/store";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import Card from "@/components/Card.vue";
 
@@ -26,7 +26,7 @@ export default class Home extends Vue {
 
   // Computed property.
   get people() {
-    return store.state.people;
+    return this.$store.state.products.people;
   }
 
   // Life cycle hook.

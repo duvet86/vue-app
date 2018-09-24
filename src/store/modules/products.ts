@@ -1,19 +1,19 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
+import { Module } from "vuex";
+import { IRootState } from "@/store";
 
 export interface IPerson {
   first_name: string;
   last_name: string;
 }
 
-interface IState {
+export interface IProductsState {
+  isLoading: boolean;
   people: IPerson[];
 }
 
-export default new Vuex.Store<IState>({
+const productsModule: Module<IProductsState, IRootState> = {
   state: {
+    isLoading: true,
     people: []
   },
   mutations: {
@@ -25,7 +25,7 @@ export default new Vuex.Store<IState>({
     async getPeople({ commit }) {
       try {
         const response = await fetch("/api/data");
-        const { people }: IState = await response.json();
+        const { people }: IProductsState = await response.json();
 
         commit("setPeople", people.slice(0, 12));
       } catch (e) {
@@ -34,4 +34,6 @@ export default new Vuex.Store<IState>({
       }
     }
   }
-});
+};
+
+export default productsModule;

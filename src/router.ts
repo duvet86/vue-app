@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
+import store from "./store";
 import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -24,3 +25,14 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((_, __, next) => {
+  store.commit("setLoading", true);
+  next();
+});
+
+router.afterEach((_, __) => {
+  store.commit("setLoading", false);
+});
+
+export default router;

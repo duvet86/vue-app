@@ -10,7 +10,9 @@
     </nav>
 
     <main>
-      <router-view/>
+      <Loading v-bind:isLoading="isRouteLoading">
+        <router-view/>
+      </Loading>
     </main>
 
      <footer>
@@ -21,18 +23,24 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Loading from "@/components/common/Loading.vue";
 import Header from "@/components/Header.vue";
 import SideBar from "@/components/SideBar.vue";
 import Footer from "@/components/Footer.vue";
 
 @Component({
   components: {
+    Loading,
     Header,
     SideBar,
     Footer
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  get isRouteLoading() {
+    return this.$store.state.routes.isLoading;
+  }
+}
 </script>
 
 <style>
