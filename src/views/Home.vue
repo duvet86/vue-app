@@ -40,5 +40,6 @@ export default class Home extends Vue {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

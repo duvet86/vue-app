@@ -27,7 +27,7 @@ export default new Vuex.Store<IState>({
         const data = await fetch("/api/data");
         const people: IPerson[] = await data.json();
 
-        commit("setPeople", people.slice(0, 10));
+        commit("setPeople", people.slice(0, 12));
       } catch (e) {
         // tslint:disable-next-line:no-console
         console.error(e);
